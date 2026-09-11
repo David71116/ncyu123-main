@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="rwd.css">
+  <title>作品集</title>
+  <script src="https://kit.fontawesome.com/7d41b421d5.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* 點擊放大的平滑動態效果 */
+    .zoomable-img {
+      cursor: zoom-in;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* 圖片放大樣式：放大 2 倍並帶有層次陰影 */
+    .zoomable-img.is-zoomed {
+      transform: scale(2);
+      cursor: zoom-out;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+      border-radius: 8px;
+    }
+
+    /* 放大的卡片將層級提到最頂層，確保不被鄰近與下方卡片遮擋 */
+    .card.has-zoomed-img {
+      z-index: 2000 !important;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body class="page-works">
+  <div class="top">
+    <nav class="navbar navbar-expand-lg navbar-light mbg">
+      <a class="navbar-brand" href="作品.html"> 作品</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon active"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="我喜歡的歌.html">我喜歡的歌</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="聯絡我.html">聯絡我</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container mt-5 text-center">
+    <div class="row">
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <img src="image/78999.png" class="card-img-top w-100" alt="創意設計課程作品圖片">
+          <div class="card-body">
+            <h5 class="card-title">創意設計課程作品</h5>
+            <p class="card-text">繪圖介紹好美里的生態</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#more1" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="more1">
+              <div class="card card-body bg-light text-left">
+                本組探討布袋鎮好美里的生態，並用有趣的圖文、圖鑑、商品，讓去當地的遊客能更深有系統的了解當地的動植物。以探索地圖的方式，一一收集圖鑑，不僅能在旅遊時欣賞大自然生態，也能在回程時收穫滿滿。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <video class="card-img-top w-100" controls>
+            <source src="image/跳跳球.mp4" type="video/mp4">
+            您的瀏覽器不支援影片播放。
+          </video>
+          <div class="card-body">
+            <h5 class="card-title">動畫作品</h5>
+            <p class="card-text">彈跳球</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#more5" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="more5">
+              <div class="card card-body bg-light text-left">
+                學會了怎麼製作動畫,而最一開始讓我印象深刻的就是這個小demo,一顆彈跳的球!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <img src="image/999.png" class="card-img-top w-100" alt="水箭龜作品圖片">
+          <div class="card-body">
+            <h5 class="card-title">水箭龜</h5>
+            <p class="card-text">以拉繪圖</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#more6" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="more6">
+              <div class="card card-body bg-light text-left">
+                因為學了illustrator,所有會開始畫一些自己喜歡的東西，或許技術還不是很成熟，但是算喜歡畫!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <img src="image/placeholder1.png" class="card-img-top w-100" alt="糖廠網站">
+          <div class="card-body">
+            <h5 class="card-title">糖廠網站</h5>
+            <p class="card-text">糖廠互動式地圖</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#new1" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="new1">
+              <div class="card card-body bg-light text-left">
+                由gis後續做成網站,能看到台灣糖廠的時序地圖
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <img src="image/placeholder2.png" class="card-img-top w-100" alt="新作品 2">
+          <div class="card-body">
+            <h5 class="card-title">8環</h5>
+            <p class="card-text">一款類似dark room的文字冒險遊戲</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#new2" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="new2">
+              <div class="card card-body bg-light text-left">
+                扮演希恩解開真相，真相真的是真相嗎。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <img src="image/總攬.png" class="card-img-top w-100" alt="新作品 3">
+          <div class="card-body">
+            <h5 class="card-title">繪本龍翼之塔</h5>
+            <p class="card-text">繪畫繪本並做成動畫</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#new3" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="new3">
+              <div class="card card-body bg-light text-left">
+                先畫繪本並製作,用ai輔助做成動畫。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-12 mt-5 mb-5">
+        <div class="card h-100">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="image/index.html" allowfullscreen style="border: none;">
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Unity 小遊戲</h5>
+            <p class="card-text">用 Unity 製作的小遊戲，可以互動操作！</p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#moreGame" role="button" aria-expanded="false">
+              查看更多
+            </a>
+            <div class="collapse mt-3" id="moreGame">
+              <div class="card card-body bg-light text-left">
+                這是一個使用 Unity WebGL 製作的簡易互動小遊戲，將其嵌入網頁中，讓玩家可以直接體驗。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.card-img-top').forEach(el => {
+      // 僅針對圖片處理點擊放大，避免影響影片播放功能
+      if (el.tagName.toLowerCase() === 'img') {
+        el.classList.add('zoomable-img');
+
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = el.closest('.card');
+          const isZoomed = el.classList.contains('is-zoomed');
+
+          // 先重設網頁上其他已放大的卡片與圖片
+          document.querySelectorAll('.zoomable-img').forEach(img => {
+            img.classList.remove('is-zoomed');
+            const parentCard = img.closest('.card');
+            if (parentCard) parentCard.classList.remove('has-zoomed-img');
+          });
+
+          // 若原本未放大，則將卡片拉至最頂層並放大圖片
+          if (!isZoomed) {
+            el.classList.add('is-zoomed');
+            if (card) card.classList.add('has-zoomed-img');
+          }
+        });
+      }
+    });
+
+    // 點擊卡片以外任何空白處時自動還原縮圖
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.zoomable-img').forEach(img => {
+        img.classList.remove('is-zoomed');
+        const parentCard = img.closest('.card');
+        if (parentCard) parentCard.classList.remove('has-zoomed-img');
+      });
+    });
+  </script>
+</body>
+
+</html>

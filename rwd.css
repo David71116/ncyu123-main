@@ -1,0 +1,776 @@
+/* ==========================================================================
+   1. 字體與全域重設 (Font & Reset)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
+* {
+  font-family: 'Kosugi Maru', sans-serif;
+  box-sizing: border-box;
+}
+
+/* 預設 body（首頁預設深灰科技漸層，切換時帶柔和淡入動畫） */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #0b0f19 !important;
+  transition: background 0.8s ease-in-out;
+}
+
+/* ==========================================================================
+   首頁與作品頁：寶可夢背景大圖
+   ========================================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #0b0f19 !important;
+  transition: background 0.8s ease-in-out;
+}
+
+/* 1. 只要不是 4 大展廳，且不是聯絡我模式，一律當作首頁/作品頁顯示寶可夢 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('image/首頁圖.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  opacity: 0.4;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+/* 2. 只有進入 4 大展廳時隱藏 */
+body.theme-puzzle::before,
+body.theme-chess::before,
+body.theme-badminton::before,
+body.theme-anime::before {
+  display: none !important;
+}
+
+/* 3. 音樂頁面與聯絡我頁面：強制徹底關閉寶可夢圖層，顯現原生背景 */
+body.page-music::before,
+body.page-contact::before,
+body.mode-day::before,
+body.mode-night::before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   四大展廳各自獨立背景
+   ========================================================================== */
+
+/* 1. 拼圖展廳：紅色幾何菱形交錯紋理 */
+body.theme-puzzle {
+  background-color: #3b0d11 !important;
+  background-image: 
+    linear-gradient(135deg, #59161c 25%, transparent 25%),
+    linear-gradient(225deg, #59161c 25%, transparent 25%),
+    linear-gradient(315deg, #59161c 25%, transparent 25%),
+    linear-gradient(45deg, #59161c 25%, transparent 25%) !important;
+  background-position: -20px 0, -20px 0, 0 0, 0 0 !important;
+  background-size: 80px 80px !important;
+  background-repeat: repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* 2. 棋藝展廳：柔和黑白交錯正方形棋盤格（調淡不刺眼） */
+body.theme-chess {
+  background-color: #0b0f19 !important;
+  background-image: conic-gradient(
+    rgb(191, 189, 189) 90deg, 
+    transparent 90deg 180deg, 
+    rgba(254, 250, 250, 0.8) 180deg 270deg, 
+    transparent 270deg
+  ) !important;
+  background-size: 160px 160px !important;
+  background-attachment: fixed !important;
+}
+
+/* 3. 運動展廳：皇室戰爭 100% 精準大菱格 */
+body.theme-badminton {
+  background-color: #0b3254 !important;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><rect width="120" height="120" fill="%230c3b66"/><polygon points="60,4 116,60 60,116 4,60" fill="%231a5c96" stroke="%23061a2d" stroke-width="4"/><polygon points="0,0 60,0 0,60" fill="%230c3b66"/><polygon points="120,0 60,0 120,60" fill="%230c3b66"/><polygon points="0,120 60,120 0,60" fill="%230c3b66"/><polygon points="120,120 60,120 120,60" fill="%230c3b66"/><line x1="0" y1="0" x2="120" y2="120" stroke="%23061a2d" stroke-width="3"/><line x1="120" y1="0" x2="0" y2="120" stroke="%23061a2d" stroke-width="3"/></svg>') !important;
+  background-size: 120px 120px !important;
+  background-repeat: repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* 4. 動漫展廳：刀劍神域/奇幻星空（星空前調至第 1 層，清晰閃耀） */
+body.theme-anime {
+  background-color: #08071a !important;
+  background-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260"><path d="M50 35 Q50 50 35 50 Q50 50 50 65 Q50 50 65 50 Q50 50 50 35 Z" fill="%23ffffff" opacity="0.95"/><path d="M190 140 Q190 160 170 160 Q190 160 190 180 Q190 160 210 160 Q190 160 190 140 Z" fill="%23fde047" opacity="0.9"/><path d="M110 190 Q110 200 100 200 Q110 200 110 210 Q110 200 120 200 Q110 200 110 190 Z" fill="%2367e8f9" opacity="0.85"/><circle cx="20" cy="180" r="2" fill="%23ffffff" opacity="0.75"/><circle cx="85" cy="110" r="1.5" fill="%23fbcfe8" opacity="0.8"/><circle cx="150" cy="40" r="2.5" fill="%23ffffff" opacity="0.85"/><circle cx="230" cy="80" r="1.5" fill="%2367e8f9" opacity="0.75"/><circle cx="240" cy="220" r="2" fill="%23fde047" opacity="0.7"/><circle cx="140" cy="245" r="1.5" fill="%23ffffff" opacity="0.6"/></svg>'),
+    radial-gradient(circle at 50% 25%, rgba(67, 56, 202, 0.45) 0%, rgba(15, 23, 42, 0.85) 65%, #08071a 100%) !important;
+  background-size: 260px 260px, 100% 100% !important;
+  background-repeat: repeat, no-repeat !important;
+  background-attachment: fixed, fixed !important;
+}
+
+/* ==========================================================================
+   2. 導覽列與共用元件 (Navbar & Components)
+   ========================================================================== */
+.mbg {
+  background-color: rgba(30, 30, 30, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-light .navbar-brand {
+  color: #ff9900;
+}
+
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+  color: #1f91cb;
+}
+
+/* 選單文字顏色 */
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgb(255, 200, 100);
+}
+
+/* 選單當前頁面高亮：預設與黑夜（白底黑字，確保文字不被吃掉） */
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link {
+  background-color: #ffffff !important;
+  color: #0b0f19 !important;
+  font-weight: bold !important;
+  border-radius: 4px;
+}
+
+/* 聯絡我：白天模式專用樣式（解決白底導覽列上看不見白框的問題） */
+body.mode-day .navbar-light .navbar-nav .nav-link {
+  color: #334155 !important;
+}
+
+body.mode-day .navbar-light .navbar-nav .active > .nav-link,
+body.mode-day .navbar-light .navbar-nav .nav-link.active {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+/* 半透明通用區塊 */
+.box {
+  background-color: rgba(50, 50, 50, 0.6);
+  padding: 20px;
+}
+
+.my_photo {
+  width: 160px;
+}
+
+.pokempn {
+  width: 400px;
+  padding: 20px;
+}
+
+/* 聯絡資訊清單 */
+.contract ul {
+  padding: 0;
+  list-style: none;
+}
+
+.contract ul li {
+  padding: 20px 40px;
+  display: inline-block;
+  font-size: 30px;
+}
+
+.contract ul li a {
+  color: rgb(255, 255, 255);
+}
+
+.contract ul li a:hover {
+  color: rgb(205, 205, 31);
+}
+
+/* ==========================================================================
+   3. 卡片與媒體展示 (Cards & Media)
+   ========================================================================== */
+.card {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  color: #333;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.btn-primary {
+  background-color: #ff7e5f;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #eb6750;
+}
+
+.media-box {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.media-box img,
+.media-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.btn-primary {
+  background-color: #ff7e5f;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #eb6750;
+}
+
+.media-box {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.media-box img,
+.media-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* ==========================================================================
+   4. 分段色彩 (Section Backgrounds)
+   ========================================================================== */
+section {
+  padding-top: 80px;
+}
+
+section#s1 {
+  background-color: rgba(123, 122, 222, 0.2);
+}
+
+section#s2 {
+  background-color: #e1b8ff;
+}
+
+section#s3 {
+  background-color: #b8e1ff;
+  padding-bottom: 200px;
+}
+
+section#s4 {
+  background-color: #fdffeb;
+}
+
+
+
+/* ==========================================================================
+   6. 回到頂部按鈕 (Back to Top Arrow)
+   ========================================================================== */
+.toTop-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 33%;
+  opacity: 0.6;
+  background: #000;
+  cursor: pointer;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+}
+
+.toTop-arrow::before,
+.toTop-arrow::after {
+  width: 18px;
+  height: 5px;
+  border-radius: 3px;
+  background: #f90;
+  position: absolute;
+  content: "";
+}
+
+.toTop-arrow::before {
+  transform: rotate(-45deg) translate(0, -50%);
+  left: 0.5rem;
+}
+
+.toTop-arrow::after {
+  transform: rotate(45deg) translate(0, -50%);
+  right: 0.5rem;
+}
+
+.toTop-arrow:focus {
+  outline: none;
+}
+/* ==========================================================================
+   MBTI 彩蛋小框框 (固定在右下角)
+   ========================================================================== */
+.mbti-egg-box {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.3);
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 顯示時平滑彈出 */
+.mbti-egg-box.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.egg-icon {
+  font-size: 24px;
+}
+
+.egg-title {
+  font-size: 0.8rem;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+.egg-desc {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+}
+
+.egg-desc strong {
+  color: #f59e0b;
+  font-size: 1.05rem;
+}
+
+.egg-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 8px;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.egg-close:hover {
+  color: #ffffff;
+}
+/* ==========================================================================
+   畫筆從左到右繪製顯現動畫
+   ========================================================================== */
+.gallery-banner-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 236, 210, 0.96) 0%, rgba(252, 182, 159, 0.96) 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  padding: 38px 24px;
+}
+
+/* 1. 畫筆精緻化：流線起伏與筆尖墨暈光澤 */
+.brush-pencil {
+  position: absolute;
+  top: 50%;
+  left: -50px;
+  font-size: 2.2rem;
+  color: #ff5722;
+  filter: drop-shadow(0 6px 10px rgba(230, 81, 0, 0.35));
+  z-index: 10;
+  pointer-events: none;
+  animation: organicBrushStroke 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* 筆尖顏料微光亮點 */
+.brush-pencil::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 4px;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffcc80 20%, rgba(255, 152, 0, 0.8) 60%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+/* 2. 內容顯現：改用遮罩漸層（邊界羽化不生硬） */
+.gallery-banner-content {
+  position: relative;
+  z-index: 2;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 var(--reveal, 0%), transparent calc(var(--reveal, 0%) + 8%));
+  mask-image: linear-gradient(to right, #000 0%, #000 var(--reveal, 0%), transparent calc(var(--reveal, 0%) + 8%));
+  animation: smoothRevealMask 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* 畫筆運動：加入刷繪時的自然弧度震顫與傾斜 */
+@keyframes organicBrushStroke {
+  0% {
+    left: -50px;
+    top: 52%;
+    transform: translateY(-50%) rotate(-38deg) scale(0.9);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+    transform: translateY(-50%) rotate(-35deg) scale(1.05);
+  }
+  15% {
+    top: 47%;
+    transform: translateY(-50%) rotate(-32deg) scale(1);
+  }
+  28% {
+    top: 53%;
+    transform: translateY(-50%) rotate(-36deg) scale(1.02);
+  }
+  42% {
+    left: calc(100% + 20px);
+    top: 48%;
+    transform: translateY(-50%) rotate(-30deg) scale(1);
+    opacity: 1;
+  }
+  46%, 86% {
+    left: calc(100% + 40px);
+    opacity: 0;
+  }
+  94%, 100% {
+    left: -50px;
+    opacity: 0;
+  }
+}
+
+/* 遮罩漸現：柔順推進、長久懸停展示、平滑淡退 */
+@keyframes smoothRevealMask {
+  0% {
+    --reveal: 0%;
+    -webkit-mask-position: 0% 0;
+    clip-path: inset(0 100% 0 0 round 0);
+    opacity: 0.3;
+  }
+  42% {
+    --reveal: 100%;
+    clip-path: inset(0 0% 0 0 round 0);
+    opacity: 1;
+  }
+  86% {
+    clip-path: inset(0 0% 0 0 round 0);
+    opacity: 1;
+  }
+  94%, 100% {
+    clip-path: inset(0 0% 0 0 round 0);
+    opacity: 0;
+  }
+}
+
+/* --- 動畫 2：字體隨著畫筆切面揭開，停留展示後重置 --- */
+@keyframes paintReveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  45% {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+  85% {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+  95%, 100% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+}
+/* ==========================================================================
+   雙重彩蛋：第一重懸浮膠囊 + 第二重生活秘密彈窗
+   ========================================================================== */
+
+/* 第一重：首頁右下角浮動發光按鈕 */
+.easter-egg-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.45);
+  animation: eggBounce 2.5s infinite ease-in-out, eggGlow 2s infinite alternate;
+  transition: transform 0.2s ease;
+}
+
+.easter-egg-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.egg-icon { font-size: 1.3rem; }
+.egg-text { font-weight: bold; font-size: 0.95rem; letter-spacing: 1px; }
+.egg-badge {
+  background: #ffffff;
+  color: #e74c3c;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+@keyframes eggBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes eggGlow {
+  from { box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4); }
+  to { box-shadow: 0 8px 30px rgba(231, 76, 60, 0.8); }
+}
+
+/* 第二重：生活展廳全螢幕毛玻璃背景 */
+.life-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 15, 25, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 生活展廳彈窗主體 */
+.life-modal-card {
+  position: relative;
+  background: linear-gradient(145deg, #1c2333, #111622);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border-radius: 24px;
+  max-width: 820px;
+  width: 100%;
+  padding: 36px 30px;
+  animation: modalScaleUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   生活碎片展廳：視窗與關閉按鈕
+   ========================================================================== */
+.life-modal-card {
+  max-width: 900px !important;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.life-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.life-modal-close:hover {
+  color: #ff7675;
+}
+
+/* ==========================================================================
+   INTJ 彩蛋預設隱藏與觸發樣式（防止白天無故彈出）
+   ========================================================================== */
+.mbti-egg-box {
+  display: none !important;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mbti-egg-box.show {
+  display: flex !important;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   生活碎片：卡片樣式
+   ========================================================================== */
+.life-photo-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.life-photo-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 193, 7, 0.6);
+}
+
+.life-photo-body {
+  padding: 12px 14px;
+}
+
+/* 外層容器：固定 190px 高度，容納原生控制條不被裁切 */
+.life-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  background: #000000;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+/* 照片：滿版裁切填滿 */
+.life-photo-wrap img.life-photo-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.life-photo-card:hover img.life-photo-img {
+  transform: scale(1.05);
+}
+
+/* 影片：縮圖時滿版填滿，並確保原生控制條置底可見 */
+.life-photo-wrap video.life-photo-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* 強制 Chrome / Edge 原生控制面板置底可見 */
+.life-photo-wrap video::-webkit-media-controls-enclosure {
+  overflow: visible !important;
+}
+
+.life-photo-wrap video::-webkit-media-controls-panel {
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+/* 標籤徽章：固定於右上角，穿透點擊以防干擾影片控制 */
+.life-photo-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #ffc107;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 5;
+  backdrop-filter: blur(4px);
+}
+
+/* ==========================================================================
+   全螢幕模式：點擊 ⛶ 後還原 100% 完整畫面，黑底居中不裁切人臉
+   ========================================================================== */
+:fullscreen video,
+:-webkit-full-screen video,
+video:fullscreen,
+video:-webkit-full-screen,
+.life-photo-wrap video:fullscreen,
+.life-photo-wrap video:-webkit-full-screen {
+  object-fit: contain !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #000000 !important;
+}
