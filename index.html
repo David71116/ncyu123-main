@@ -1342,22 +1342,27 @@ function closeLightbox() {
         </div>
       </div>
 
-      <!-- 3. 彈鋼琴（影片） -->
-      <div class="col-md-6 mb-3">
-        <div class="life-photo-card">
-          <div class="life-photo-wrap">
-            <video class="life-photo-img" controls autoplay muted loop playsinline>
-              <source src="image/鋼琴2020.mp4" type="video/mp4">
-              您的瀏覽器不支援影片播放
-            </video>
-            <span class="life-photo-badge">🎹 琴鍵影音</span>
-          </div>
-          <div class="life-photo-body">
-            <h5 class="text-white font-weight-bold mb-1">琴鍵上的旋律</h5>
-            <p class="text-white-50 small mb-0">記錄彈鋼琴，國中時一首簡單的詩歌。</p>
-          </div>
-        </div>
-      </div>
+     <!-- 3. 彈鋼琴（改為 YouTube 嵌入） -->
+<div class="col-md-6 mb-3">
+  <div class="life-photo-card">
+    <div class="life-photo-wrap">
+      <iframe 
+        id="pianoYoutubeIframe"
+        class="life-photo-img" 
+        src="https://www.youtube.com/embed/你的影片ID?enablejsapi=1&rel=0" 
+        title="琴鍵上的旋律" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+      <span class="life-photo-badge">🎹 琴鍵影音</span>
+    </div>
+    <div class="life-photo-body">
+      <h5 class="text-white font-weight-bold mb-1">琴鍵上的旋律</h5>
+      <p class="text-white-50 small mb-0">黑白鍵交織出的動漫主題曲與慢歌，是夜晚讓思緒沉澱放鬆的出口。</p>
+    </div>
+  </div>
+</div>
 
       <!-- 4. 數字油畫（照片，點擊可放大看全圖） -->
       <div class="col-md-6 mb-3">
