@@ -1245,12 +1245,19 @@ function closeLifeSecret() {
   if (modal) {
     modal.style.display = 'none';
 
-    // 找到所有影片：暫停、時間歸零、並先靜音以確保不會有任何漏音
+    // 1. 停止本機原生影片（彈珠、魔術）
     const videos = modal.querySelectorAll('video');
     videos.forEach(video => {
       video.pause();
-      video.currentTime = 0; // 重置進度至開頭
+      video.currentTime = 0;
     });
+
+    // 2. 停止 YouTube 影片（重設 src 即時中斷播放）
+    const ytIframe = document.getElementById('pianoYoutubeIframe');
+    if (ytIframe) {
+      const currentSrc = ytIframe.src;
+      ytIframe.src = currentSrc;
+    }
   }
 }
 function zoomMedia(type, src) {
@@ -1349,7 +1356,7 @@ function closeLightbox() {
       <iframe 
         id="pianoYoutubeIframe"
         class="life-photo-img" 
-        src="https://www.youtube.com/embed/你的影片ID?enablejsapi=1&rel=0" 
+        src="https://www.youtube.com/shorts/x-zFueFjhmI?feature=share" 
         title="琴鍵上的旋律" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
