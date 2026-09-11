@@ -725,10 +725,12 @@ section#s4 {
 }
 
 /* 影片：縮圖時滿版填滿，並確保原生控制條置底可見 */
-.life-photo-wrap video.life-photo-img {
+/* 支援影片與 YouTube iframe 滿版置中 */
+.life-photo-wrap video.life-photo-img,
+.life-photo-wrap iframe.life-photo-img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  border: none;
   display: block;
   position: relative;
   z-index: 1;
