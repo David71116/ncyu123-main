@@ -458,45 +458,63 @@
   </div>
 
   <div class="container mt-4 mb-5">
+  <div id="main-gallery">
+    <!-- 畫筆塗抹迎賓牌 -->
+    <div class="gallery-banner-card text-center mb-5 shadow">
 
-    <div id="main-gallery">
-      <!-- 畫筆塗抹迎賓牌 -->
-      <div class="gallery-banner-card text-center mb-5 shadow">
-
-        <!-- 跟著動的畫筆筆尖 -->
-        <div class="brush-pencil">
+      <!-- 精緻工具容器：原版亮橘毛筆 + 放大立體橡皮擦 -->
+      <div class="tool-actor">
+        <!-- 1. 書寫毛筆 -->
+        <div class="tool-skin tool-brush">
           <i class="fas fa-paint-brush"></i>
         </div>
 
-        <!-- 畫筆劃過才會顯現的內容 -->
-        <div class="gallery-banner-content">
-          <!-- 頂部策展徽章 -->
-          <div class="d-inline-flex align-items-center px-3 py-1 rounded-pill mb-3 shadow-sm" 
-               style="background: rgba(0, 0, 0, 0.75); color: #ffc107; font-size: 0.82rem; letter-spacing: 2px; font-weight: bold;">
-            <i class="fas fa-palette mr-2"></i> CURATED EXHIBITION · 個人策展
-          </div>
-
-          <!-- 主標題 -->
-          <h1 class="font-weight-bold mb-3" 
-              style="color: #2c3e50; letter-spacing: 2px; font-size: 2.2rem;">
-            仲恩的個人興趣畫廊
-          </h1>
-
-          <!-- 引言 -->
-          <p class="lead mb-3" style="color: #4a5568; font-size: 1.05rem; letter-spacing: 1px; font-weight: bold;">
-            「像拼圖一樣，一塊碎片、一段故事，慢慢拼湊出最真實的我。」
-          </p>
-
-          <!-- 導覽膠囊 -->
-          <div class="d-inline-flex align-items-center small px-3 py-1 rounded-pill shadow-sm" 
-               style="background: #ffffff; color: #ff6b4a; font-weight: bold; border: 1px solid rgba(255, 107, 74, 0.3);">
-            <i class="fas fa-compass mr-2"></i>
-            <span>點擊下方展卡進入 4 大專屬沉浸式主題展廳</span>
-          </div>
+        <!-- 2. 精緻立體橡皮擦 -->
+        <div class="tool-skin tool-eraser">
+          <svg viewBox="0 0 64 64" width="56" height="56" class="eraser-svg">
+            <ellipse cx="32" cy="56" rx="22" ry="5" fill="rgba(0,0,0,0.22)" />
+            <polygon points="14,38 32,24 50,38 32,52" fill="#f8fafc" />
+            <polygon points="14,38 32,52 32,44 14,30" fill="#cbd5e1" />
+            <polygon points="50,38 32,52 32,44 50,30" fill="#94a3b8" />
+            <polygon points="20,33 32,24 44,33 32,42" fill="#3b82f6" />
+            <polygon points="20,33 32,42 32,36 20,27" fill="#2563eb" />
+            <polygon points="44,33 32,42 32,36 44,27" fill="#1d4ed8" />
+            <line x1="24" y1="36" x2="32" y2="42" stroke="#93c5fd" stroke-width="2" />
+          </svg>
         </div>
-
       </div>
 
+      <!-- 畫筆劃過顯現、橡皮擦擦除的內容 -->
+      <div class="gallery-banner-content">
+        <!-- 頂部策展徽章 -->
+        <div class="d-inline-flex align-items-center px-3 py-1 rounded-pill mb-3 shadow-sm" 
+             style="background: rgba(0, 0, 0, 0.75); color: #ffc107; font-size: 0.82rem; letter-spacing: 2px; font-weight: bold;">
+          <i class="fas fa-palette mr-2"></i> CURATED EXHIBITION · 個人策展
+        </div>
+
+        <!-- 主標題 -->
+        <h1 class="font-weight-bold mb-3" 
+            style="color: #2c3e50; letter-spacing: 2px; font-size: 2.2rem;">
+          仲恩的個人興趣畫廊
+        </h1>
+
+        <!-- 引言 -->
+        <p class="lead mb-3" style="color: #4a5568; font-size: 1.05rem; letter-spacing: 1px; font-weight: bold;">
+          「像拼圖一樣，一塊碎片、一段故事，慢慢拼湊出最真實的我。」
+        </p>
+
+        <!-- 導覽膠囊 -->
+        <div class="d-inline-flex align-items-center small px-3 py-1 rounded-pill shadow-sm" 
+             style="background: #ffffff; color: #ff6b4a; font-weight: bold; border: 1px solid rgba(255, 107, 74, 0.3);">
+          <i class="fas fa-compass mr-2"></i>
+          <span>點擊下方展卡進入 4 大專屬沉浸式主題展廳</span>
+        </div>
+      </div>
+
+    </div> <!-- 結束 gallery-banner-card -->
+   
+  
+  <!-- 注意：下方請接續你的 4 大主題展卡 (例如 <div class="row">...) -->
       <div class="row">
         <div class="col-md-6 mb-4">
           <div class="card gallery-card-puzzle h-100">
@@ -1245,19 +1263,12 @@ function closeLifeSecret() {
   if (modal) {
     modal.style.display = 'none';
 
-    // 1. 停止本機原生影片（彈珠、魔術）
+    // 找到所有影片：暫停、時間歸零、並先靜音以確保不會有任何漏音
     const videos = modal.querySelectorAll('video');
     videos.forEach(video => {
       video.pause();
-      video.currentTime = 0;
+      video.currentTime = 0; // 重置進度至開頭
     });
-
-    // 2. 停止 YouTube 影片（重設 src 即時中斷播放）
-    const ytIframe = document.getElementById('pianoYoutubeIframe');
-    if (ytIframe) {
-      const currentSrc = ytIframe.src;
-      ytIframe.src = currentSrc;
-    }
   }
 }
 function zoomMedia(type, src) {
@@ -1319,7 +1330,7 @@ function closeLightbox() {
       <div class="col-md-6 mb-3">
         <div class="life-photo-card">
           <div class="life-photo-wrap">
-           <video class="life-photo-img" controls controlslist="nodownload" oncontextmenu="return false;" loop playsinline>
+            <video class="life-photo-img" controls autoplay muted loop playsinline>
               <source src="image/彈珠.mp4" type="video/mp4">
               您的瀏覽器不支援影片播放
             </video>
@@ -1336,7 +1347,7 @@ function closeLightbox() {
       <div class="col-md-6 mb-3">
         <div class="life-photo-card">
           <div class="life-photo-wrap">
-           <video class="life-photo-img" controls controlslist="nodownload" oncontextmenu="return false;" loop playsinline>
+            <video class="life-photo-img" controls autoplay muted loop playsinline>
               <source src="image/魔術.mp4" type="video/mp4">
               您的瀏覽器不支援影片播放
             </video>
@@ -1349,20 +1360,14 @@ function closeLightbox() {
         </div>
       </div>
 
-    <!-- 3. 彈鋼琴（YouTube 嵌入） -->
+      <!-- 3. 彈鋼琴（影片） -->
       <div class="col-md-6 mb-3">
         <div class="life-photo-card">
           <div class="life-photo-wrap">
-            <iframe 
-              id="pianoYoutubeIframe"
-              class="life-photo-img" 
-              src="https://www.youtube.com/embed/x-zFueFjhmI?enablejsapi=1&rel=0" 
-              title="鋼琴2020" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen>
-            </iframe>
+            <video class="life-photo-img" controls autoplay muted loop playsinline>
+              <source src="image/鋼琴2020.mp4" type="video/mp4">
+              您的瀏覽器不支援影片播放
+            </video>
             <span class="life-photo-badge">🎹 琴鍵影音</span>
           </div>
           <div class="life-photo-body">
@@ -1371,6 +1376,7 @@ function closeLightbox() {
           </div>
         </div>
       </div>
+
       <!-- 4. 數字油畫（照片，點擊可放大看全圖） -->
       <div class="col-md-6 mb-3">
         <div class="life-photo-card">

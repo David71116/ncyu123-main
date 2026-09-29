@@ -440,117 +440,166 @@ section#s4 {
   padding: 38px 24px;
 }
 
-/* 1. 畫筆精緻化：流線起伏與筆尖墨暈光澤 */
-.brush-pencil {
+/* ==========================================================================
+   迎賓看板：毛筆寫字 + 橡皮擦高頻滑順抹除
+   ========================================================================== */
+
+/* 演員容器：設定平滑插值 */
+.tool-actor {
   position: absolute;
   top: 50%;
   left: -50px;
-  font-size: 2.2rem;
-  color: #ff5722;
-  filter: drop-shadow(0 6px 10px rgba(230, 81, 0, 0.35));
   z-index: 10;
   pointer-events: none;
-  animation: organicBrushStroke 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  /* 總循環 5 秒：書寫 1.8s -> 停頓 1.0s -> 高速絲滑擦除 1.6s -> 冷卻 0.6s */
+  animation: toolMotionSmooth 5s cubic-bezier(0.35, 0, 0.25, 1) infinite;
 }
 
-/* 筆尖顏料微光亮點 */
-.brush-pencil::after {
-  content: "";
+/* 雙工具造型定位 */
+.tool-skin {
   position: absolute;
-  bottom: 6px;
-  left: 4px;
-  width: 14px;
-  height: 14px;
-  background: radial-gradient(circle, #ffcc80 20%, rgba(255, 152, 0, 0.8) 60%, transparent 80%);
-  border-radius: 50%;
-  filter: blur(1px);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* 2. 內容顯現：改用遮罩漸層（邊界羽化不生硬） */
+/* 1. 毛筆圖示 */
+.tool-brush {
+  font-size: 2.2rem;
+  color: #ff5722;
+  filter: drop-shadow(0 6px 12px rgba(230, 81, 0, 0.4));
+  animation: brushSwitch 5s infinite;
+}
+/* 橡皮擦容器樣式：加深陰影 */
+.tool-eraser {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  animation: eraserSwitch 5s infinite;
+}
+
+.eraser-svg {
+  display: block;
+}
+
+/* 內容顯現與擦除遮罩（連貫等速） */
 .gallery-banner-content {
   position: relative;
   z-index: 2;
-  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 var(--reveal, 0%), transparent calc(var(--reveal, 0%) + 8%));
-  mask-image: linear-gradient(to right, #000 0%, #000 var(--reveal, 0%), transparent calc(var(--reveal, 0%) + 8%));
-  animation: smoothRevealMask 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  clip-path: inset(0 100% 0 0);
+  animation: maskSmoothRevealAndErase 5s linear infinite;
 }
 
-/* 畫筆運動：加入刷繪時的自然弧度震顫與傾斜 */
-@keyframes organicBrushStroke {
+/* ==========================================================================
+   關鍵動畫影格
+   ========================================================================== */
+
+/* 工具切換：前半段毛筆，後半段橡皮擦 */
+@keyframes brushSwitch {
+  0%, 46% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+@keyframes eraserSwitch {
+  0%, 48% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  52%, 88% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.35); /* 大顆且清晰 */
+  }
+  92%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+/* 移動與擦拭物理軌跡：高頻左右上下抖動，消弭卡頓 */
+@keyframes toolMotionSmooth {
+  /* [1. 筆刷書寫推進 0% ~ 36%] */
   0% {
-    left: -50px;
+    left: -40px;
     top: 52%;
-    transform: translateY(-50%) rotate(-38deg) scale(0.9);
+    transform: rotate(-35deg);
     opacity: 0;
   }
   4% {
     opacity: 1;
-    transform: translateY(-50%) rotate(-35deg) scale(1.05);
   }
-  15% {
-    top: 47%;
-    transform: translateY(-50%) rotate(-32deg) scale(1);
+  12% {
+    top: 45%;
+    transform: rotate(-28deg);
   }
-  28% {
-    top: 53%;
-    transform: translateY(-50%) rotate(-36deg) scale(1.02);
+  24% {
+    top: 55%;
+    transform: rotate(-34deg);
   }
-  42% {
+  36% {
     left: calc(100% + 20px);
     top: 48%;
-    transform: translateY(-50%) rotate(-30deg) scale(1);
+    transform: rotate(-26deg);
     opacity: 1;
   }
-  46%, 86% {
-    left: calc(100% + 40px);
-    opacity: 0;
+
+  /* [2. 停留閱讀 36% ~ 50%] */
+  40%, 50% {
+    left: calc(100% + 20px);
+    top: 50%;
+    transform: rotate(0deg);
+    opacity: 1;
   }
-  94%, 100% {
-    left: -50px;
+
+  /* [3. 橡皮擦高速來回擦拭倒退 52% ~ 86%] */
+  53% { left: 96%; top: 40%; transform: rotate(15deg); }
+  56% { left: 88%; top: 60%; transform: rotate(-15deg); }
+  59% { left: 80%; top: 38%; transform: rotate(18deg); }
+  62% { left: 72%; top: 62%; transform: rotate(-18deg); }
+  65% { left: 64%; top: 40%; transform: rotate(15deg); }
+  68% { left: 56%; top: 60%; transform: rotate(-15deg); }
+  71% { left: 48%; top: 38%; transform: rotate(18deg); }
+  74% { left: 40%; top: 62%; transform: rotate(-18deg); }
+  77% { left: 30%; top: 40%; transform: rotate(15deg); }
+  80% { left: 20%; top: 60%; transform: rotate(-15deg); }
+  83% { left: 10%; top: 42%; transform: rotate(12deg); }
+  86% { left: -40px; top: 50%; transform: rotate(0deg); opacity: 1; }
+
+  /* [4. 歸位冷卻 88% ~ 100%] */
+  90%, 100% {
+    left: -40px;
+    top: 52%;
     opacity: 0;
   }
 }
 
-/* 遮罩漸現：柔順推進、長久懸停展示、平滑淡退 */
-@keyframes smoothRevealMask {
-  0% {
-    --reveal: 0%;
-    -webkit-mask-position: 0% 0;
-    clip-path: inset(0 100% 0 0 round 0);
-    opacity: 0.3;
-  }
-  42% {
-    --reveal: 100%;
-    clip-path: inset(0 0% 0 0 round 0);
-    opacity: 1;
-  }
-  86% {
-    clip-path: inset(0 0% 0 0 round 0);
-    opacity: 1;
-  }
-  94%, 100% {
-    clip-path: inset(0 0% 0 0 round 0);
-    opacity: 0;
-  }
-}
+/* 遮罩同步收縮：與橡皮擦的密集影格精準對齊，無斷層感 */
+@keyframes maskSmoothRevealAndErase {
+  /* 書寫展開 */
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0.8; }
+  36%  { clip-path: inset(0 0% 0 0); opacity: 1; }
+  
+  /* 停頓展示 */
+  50%  { clip-path: inset(0 0% 0 0); opacity: 1; }
 
-/* --- 動畫 2：字體隨著畫筆切面揭開，停留展示後重置 --- */
-@keyframes paintReveal {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  45% {
-    clip-path: inset(0 0% 0 0);
-    opacity: 1;
-  }
-  85% {
-    clip-path: inset(0 0% 0 0);
-    opacity: 1;
-  }
-  95%, 100% {
-    clip-path: inset(0 100% 0 0);
-    opacity: 0;
-  }
+  /* 擦除倒退（維持線性收攏，配合擦拭動作） */
+  53%  { clip-path: inset(0 5% 0 0); }
+  59%  { clip-path: inset(0 20% 0 0); }
+  65%  { clip-path: inset(0 38% 0 0); }
+  71%  { clip-path: inset(0 55% 0 0); }
+  77%  { clip-path: inset(0 72% 0 0); }
+  83%  { clip-path: inset(0 90% 0 0); }
+  86%  { clip-path: inset(0 100% 0 0); opacity: 0.8; }
+
+  /* 重置 */
+  90%, 100% { clip-path: inset(0 100% 0 0); opacity: 0; }
 }
 /* ==========================================================================
    雙重彩蛋：第一重懸浮膠囊 + 第二重生活秘密彈窗
@@ -725,12 +774,10 @@ section#s4 {
 }
 
 /* 影片：縮圖時滿版填滿，並確保原生控制條置底可見 */
-/* 支援影片與 YouTube iframe 滿版置中 */
-.life-photo-wrap video.life-photo-img,
-.life-photo-wrap iframe.life-photo-img {
+.life-photo-wrap video.life-photo-img {
   width: 100% !important;
   height: 100% !important;
-  border: none;
+  object-fit: cover !important;
   display: block;
   position: relative;
   z-index: 1;
