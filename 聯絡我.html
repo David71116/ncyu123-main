@@ -22,7 +22,7 @@
     /* 白天：清爽明亮校園風 */
     body.mode-day {
       background-color: #f1f5f9 !important;
-      background-image: 
+      background-image:
         radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%) !important;
       color: #1e293b;
@@ -31,7 +31,7 @@
     /* 黑夜：極限深邃電競風 */
     body.mode-night {
       background-color: #05070e !important;
-      background-image: 
+      background-image:
         radial-gradient(circle at 15% 25%, rgba(244, 63, 94, 0.16) 0%, transparent 45%),
         radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.18) 0%, transparent 50%) !important;
       color: #f8fafc;
@@ -40,20 +40,24 @@
     /* 頂部導覽列同步風格 */
     body.mode-day .top nav {
       background-color: #ffffff !important;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     }
+
     body.mode-night .top nav {
       background-color: #0b0f19 !important;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     }
-    body.mode-day .top .nav-link, 
+
+    body.mode-day .top .nav-link,
     body.mode-day .top .navbar-brand {
       color: #334155 !important;
     }
-    body.mode-night .top .nav-link, 
+
+    body.mode-night .top .nav-link,
     body.mode-night .top .navbar-brand {
       color: #e2e8f0 !important;
     }
+
     .top .nav-link.active {
       color: #38bdf8 !important;
       font-weight: 700;
@@ -107,25 +111,69 @@
     }
 
     @keyframes slashWipe {
-      0% { left: -40%; opacity: 0; }
-      20% { opacity: 1; }
-      60% { opacity: 1; filter: blur(0px) brightness(2); }
-      100% { left: 130%; opacity: 0; }
+      0% {
+        left: -40%;
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      60% {
+        opacity: 1;
+        filter: blur(0px) brightness(2);
+      }
+
+      100% {
+        left: 130%;
+        opacity: 0;
+      }
     }
 
     @keyframes warpFadeInOut {
-      0% { opacity: 0; }
-      35% { opacity: 0.98; }
-      75% { opacity: 0.98; }
-      100% { opacity: 0; }
+      0% {
+        opacity: 0;
+      }
+
+      35% {
+        opacity: 0.98;
+      }
+
+      75% {
+        opacity: 0.98;
+      }
+
+      100% {
+        opacity: 0;
+      }
     }
 
     @keyframes screenGlitch {
-      0% { transform: translate(0); filter: hue-rotate(0deg); }
-      25% { transform: translate(-5px, 2px) skewX(1.5deg); filter: hue-rotate(90deg); }
-      50% { transform: translate(5px, -2px) skewX(-1.5deg); filter: contrast(150%); }
-      75% { transform: translate(-3px, -1px); filter: hue-rotate(270deg); }
-      100% { transform: translate(0); filter: hue-rotate(0deg); }
+      0% {
+        transform: translate(0);
+        filter: hue-rotate(0deg);
+      }
+
+      25% {
+        transform: translate(-5px, 2px) skewX(1.5deg);
+        filter: hue-rotate(90deg);
+      }
+
+      50% {
+        transform: translate(5px, -2px) skewX(-1.5deg);
+        filter: contrast(150%);
+      }
+
+      75% {
+        transform: translate(-3px, -1px);
+        filter: hue-rotate(270deg);
+      }
+
+      100% {
+        transform: translate(0);
+        filter: hue-rotate(0deg);
+      }
     }
 
     /* ================= 3D 翻轉正圓形頭貼（完美正圓） ================= */
@@ -157,7 +205,8 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 50%; /* 正圓形 */
+      border-radius: 50%;
+      /* 正圓形 */
       overflow: hidden;
     }
 
@@ -167,6 +216,7 @@
       background: #e2e8f0;
       box-shadow: 0 8px 25px rgba(15, 23, 42, 0.15);
     }
+
     .flip-avatar-front img {
       width: 100%;
       height: 100%;
@@ -202,13 +252,15 @@
       border-radius: 20px;
       white-space: nowrap;
       pointer-events: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
+
     body.mode-day .flip-hint {
       background: #ffffff;
       color: #0284c7;
       border: 1px solid #bae6fd;
     }
+
     body.mode-night .flip-hint {
       background: #0f172a;
       color: #f43f5e;
@@ -220,6 +272,7 @@
       display: none;
       opacity: 0;
     }
+
     .page-mode.mode-active {
       display: block;
       opacity: 1;
@@ -230,14 +283,37 @@
       animation: blockAssemble 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
-    .reassemble .delay-1 { animation-delay: 0.05s; }
-    .reassemble .delay-2 { animation-delay: 0.15s; }
-    .reassemble .delay-3 { animation-delay: 0.25s; }
-    .reassemble .delay-4 { animation-delay: 0.35s; }
-    .reassemble .delay-5 { animation-delay: 0.45s; }
-    .reassemble .delay-6 { animation-delay: 0.55s; }
-    .reassemble .delay-7 { animation-delay: 0.65s; }
-    .reassemble .delay-8 { animation-delay: 0.75s; }
+    .reassemble .delay-1 {
+      animation-delay: 0.05s;
+    }
+
+    .reassemble .delay-2 {
+      animation-delay: 0.15s;
+    }
+
+    .reassemble .delay-3 {
+      animation-delay: 0.25s;
+    }
+
+    .reassemble .delay-4 {
+      animation-delay: 0.35s;
+    }
+
+    .reassemble .delay-5 {
+      animation-delay: 0.45s;
+    }
+
+    .reassemble .delay-6 {
+      animation-delay: 0.55s;
+    }
+
+    .reassemble .delay-7 {
+      animation-delay: 0.65s;
+    }
+
+    .reassemble .delay-8 {
+      animation-delay: 0.75s;
+    }
 
     @keyframes blockAssemble {
       0% {
@@ -245,6 +321,7 @@
         transform: translateY(40px) scale(0.92) rotateX(10deg);
         filter: blur(4px);
       }
+
       100% {
         opacity: 1;
         transform: translateY(0) scale(1) rotateX(0deg);
@@ -260,8 +337,14 @@
       padding: 30px 28px;
       box-shadow: 0 10px 30px rgba(148, 163, 184, 0.2);
     }
-    .profile-card-day h3 { color: #0f172a; }
-    .profile-card-day p { color: #475569; }
+
+    .profile-card-day h3 {
+      color: #0f172a;
+    }
+
+    .profile-card-day p {
+      color: #475569;
+    }
 
     .profile-card-night {
       background: linear-gradient(135deg, rgba(20, 16, 43, 0.9) 0%, rgba(10, 13, 26, 0.95) 100%);
@@ -270,17 +353,25 @@
       padding: 30px 28px;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(244, 63, 94, 0.2);
     }
-    .profile-card-night h3 { color: #f43f5e; }
-    .profile-card-night p { color: #cbd5e1; }
+
+    .profile-card-night h3 {
+      color: #f43f5e;
+    }
+
+    .profile-card-night p {
+      color: #cbd5e1;
+    }
 
     .section-divider {
       border: 0;
       height: 2px;
       margin: 35px 0 25px 0;
     }
+
     body.mode-day .section-divider {
       background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.3), transparent);
     }
+
     body.mode-night .section-divider {
       background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.4), transparent);
     }
@@ -294,6 +385,7 @@
       flex-direction: column;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .fullwidth-work-card:hover {
       transform: translateY(-6px);
     }
@@ -303,6 +395,7 @@
       border: 1px solid #e2e8f0;
       box-shadow: 0 4px 12px rgba(148, 163, 184, 0.15);
     }
+
     body.mode-day .work-caption {
       background: #f8fafc;
       border-top: 1px solid #edf2f7;
@@ -314,6 +407,7 @@
       border: 1px solid rgba(244, 63, 94, 0.3);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
     }
+
     body.mode-night .work-caption {
       background: rgba(15, 23, 42, 0.95);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -381,7 +475,37 @@
 
   <div class="container box mt-4 mb-5">
 
-    <!-- 白天模式底部資訊欄：與黑夜模式完美對齊 -->
+    <!-- ==================== [模式 A] 白天：大學生日常 & 數位系學生作品 ==================== -->
+    <div id="modeStudent" class="page-mode mode-active reassemble">
+
+      <!-- 上方：學生自介卡片（圓形頭貼 + 雙欄標籤完美撐齊高度） -->
+      <div class="profile-card-day block-item delay-1">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4 text-center mb-3 mb-md-0 position-relative">
+            <div class="flip-avatar-container avatar-trigger" title="點擊切換為夜間電競面">
+              <div class="flip-avatar-inner">
+                <div class="flip-avatar-front">
+                  <img src="image/頭貼.png" alt="仲恩">
+                </div>
+                <div class="flip-avatar-back">
+                  <img src="image/頭貼2.png" alt="仲恩電競面">
+                </div>
+              </div>
+            </div>
+            <div class="flip-hint"><i class="fas fa-moon mr-1"></i> 點頭貼試試</div>
+          </div>
+
+          <div class="col-12 col-md-8">
+            <div class="d-flex align-items-center mb-2">
+              <span class="badge badge-primary px-2 py-1 mr-2" style="background-color: #0284c7;">數位設計系</span>
+              <span class="text-muted small font-weight-bold">DAYTIME · STUDENT PROFILE</span>
+            </div>
+            <h3 class="font-weight-bold mb-2">大家好我叫葉仲恩</h3>
+            <p style="font-size: 0.95rem; line-height: 1.7;" class="mb-3">
+              喜歡玩遊戲、還有運動,或許看到這,又對我更了解一些.我是一個有電競夢想的大學生,在這條未知的人生路中,我也迷茫不知何去何從,但現在讀的這個科系我念得很開心,學到了很多未曾接觸的事物,比如電繪、做動畫、做遊戲的
+              Unity,還有如何做網站或許我做的不是最好,但我會慢慢學習,向著標竿直跑,要得神在基督耶穌裡從上面召我來得的獎賞 <i class="fa-solid fa-cross text-primary"></i>
+            </p>
+            <!-- 白天模式底部資訊欄：與黑夜模式完美對齊 -->
             <div class="d-flex flex-wrap align-items-center justify-content-between pt-3 border-top">
               <!-- 1. 專長 -->
               <div class="mr-3 mb-2">
@@ -422,7 +546,7 @@
           <h4 class="font-weight-bold mb-0 text-dark" style="letter-spacing: 1px;">🎓 學生創作與數位實作作品</h4>
           <span class="badge badge-light text-muted px-2 py-1">ACADEMIC & DESIGN</span>
         </div>
-        
+
         <div class="row">
           <div class="col-12 col-md-4 mb-4 block-item delay-3">
             <div class="fullwidth-work-card">
@@ -431,7 +555,8 @@
               </div>
               <div class="work-caption">
                 <h6 class="font-weight-bold mb-1 text-primary">2D 角色漫畫電繪</h6>
-                <small class="text-muted">因為上大學才接觸到電繪,所以利用寒暑假練習每天一幅間單的畫,提升實力,從一開始的以拉貝茲到描圖,再到krita的看圖畫,最後到能設計角色表情、動作。</small>
+                <small
+                  class="text-muted">因為上大學才接觸到電繪,所以利用寒暑假練習每天一幅間單的畫,提升實力,從一開始的以拉貝茲到描圖,再到krita的看圖畫,最後到能設計角色表情、動作。</small>
               </div>
             </div>
           </div>
@@ -469,7 +594,7 @@
 
     <!-- ==================== [模式 B] 黑夜：課餘熱血電競狂熱者 ==================== -->
     <div id="modeEsports" class="page-mode">
-      
+
       <!-- 上方：電競自介卡片（圓形頭貼 + 雙欄標籤完美撐齊高度） -->
       <div class="profile-card-night block-item delay-1">
         <div class="row align-items-center">
@@ -500,11 +625,13 @@
             </p>
             <div class="d-flex flex-wrap pt-1 border-top" style="border-color: rgba(255,255,255,0.08) !important;">
               <div class="mr-4 mb-1">
-                <small class="text-muted d-block font-weight-bold" style="font-size: 0.75rem; letter-spacing: 1px;">SPECIALITY</small>
+                <small class="text-muted d-block font-weight-bold"
+                  style="font-size: 0.75rem; letter-spacing: 1px;">SPECIALITY</small>
                 <span class="font-weight-bold text-light">即時策略 / 算水節奏掌控</span>
               </div>
               <div class="mr-4 mb-1">
-                <small class="text-muted d-block font-weight-bold" style="font-size: 0.75rem; letter-spacing: 1px;">CORE MOTTO</small>
+                <small class="text-muted d-block font-weight-bold" style="font-size: 0.75rem; letter-spacing: 1px;">CORE
+                  MOTTO</small>
                 <span class="font-weight-bold text-warning">沒有弱的角色,只有不會玩的玩家</span>
               </div>
             </div>
@@ -518,9 +645,10 @@
       <div class="profile-card-night block-item delay-2 mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h4 class="font-weight-bold mb-0 text-danger" style="letter-spacing: 1px;">🏆 遊戲經歷 & 排名截圖</h4>
-          <span class="badge badge-danger px-2 py-1" style="background-color: rgba(244, 63, 94, 0.2); color: #f43f5e;">ESPORTS HIGHLIGHTS</span>
+          <span class="badge badge-danger px-2 py-1"
+            style="background-color: rgba(244, 63, 94, 0.2); color: #f43f5e;">ESPORTS HIGHLIGHTS</span>
         </div>
-        
+
         <div class="row">
           <!-- ================= 第 1 排 ================= -->
           <div class="col-12 col-md-4 mb-4 block-item delay-3">
